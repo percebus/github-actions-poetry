@@ -14,3 +14,29 @@ jobs:
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
       - uses: ./.github/actions/poetry_self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+
+  python__matrix:
+    needs: default
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
+
+    name: python @ ${{ matrix.python-version }}
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: ./.github/actions/poetry_self_add_plugins
+      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
