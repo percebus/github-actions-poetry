@@ -15,7 +15,6 @@ jobs:
       - uses: ./.github/actions/poetry_self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
 
-
   python__matrix:
     needs: default
     runs-on: ubuntu-latest
