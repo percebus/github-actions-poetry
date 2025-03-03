@@ -1,0 +1,22 @@
+name: poetry self add plugins
+description: Add plugins from a requirements.txt file
+inputs:
+  requirements-file:
+    description: Path to the requirements file
+    required: false
+    default: ./requirements.poetry-plugin.txt
+
+runs:
+  using: composite
+  steps:
+    - name: cat ${{ inputs.requirements-file }}
+      shell: bash
+      run: cat ${{ inputs.requirements-file }}
+
+    - name: poetry self add
+      shell: bash
+      run: cat ${{ inputs.requirements-file }} | sed 's/.*/"&"/' | xargs -n 1 poetry self add
+
+    - name: poetry self show plugins
+      shell: bash
+      run: poetry self show plugins

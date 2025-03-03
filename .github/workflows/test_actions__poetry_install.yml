@@ -1,0 +1,17 @@
+name: Test actions/poetry_install
+
+on:
+  push:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: ./.github/actions/poetry_self_add_plugins # FIXME use @main
+      - uses: ./.github/actions/poetry_install
+      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
