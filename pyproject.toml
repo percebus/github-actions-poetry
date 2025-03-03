@@ -12,6 +12,9 @@ dependencies = [
 ]
 
 
+[tool.poetry]
+packages = [{include = "src"}]
+
 [virtualenvs]
 create = true
 in-project = true
