@@ -40,3 +40,27 @@ jobs:
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
       - uses: ./.github/actions/poetry_self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+
+  poetry__matrix:
+    needs: default
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        poetry-version:
+          - "1.x.x"
+          - "2.x.x"
+
+    name: poetry @ ${{ matrix.poetry-version }}
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+        with:
+          requirements-file: assets/exapples/poetry/${{ matrix.poetry-version }}/requirements.pipx.txt
+
+      - uses: ./.github/actions/poetry_self_add_plugins
+      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
