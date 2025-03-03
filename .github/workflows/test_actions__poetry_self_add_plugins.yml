@@ -60,7 +60,7 @@ jobs:
       - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
         with:
-          requirements-file: assets/exapples/poetry/${{ matrix.poetry-version }}/requirements.pipx.txt
+          requirements-file: assets/examples/poetry/${{ matrix.poetry-version }}/requirements.pipx.txt
 
       - uses: ./.github/actions/poetry_self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
