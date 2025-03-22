@@ -76,7 +76,7 @@ jobs:
         example:
           - pip_compatible
           - poetry-plugin-sort
-          - poetry-plugin-pip_compatible
+          - poetry-plugin-export
 
     name: "plugins: ${{ matrix.example }}"
     steps:
