@@ -75,6 +75,8 @@ jobs:
       matrix:
         example:
           - pip_compatible
+          - poetry-plugin-sort
+          - poetry-plugin-pip_compatible
 
     name: "plugins: ${{ matrix.example }}"
     steps:
