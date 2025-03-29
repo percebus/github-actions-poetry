@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
       - uses: ./.github/actions/poetry_self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
@@ -32,11 +32,11 @@ jobs:
     name: python @ ${{ matrix.python-version }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+      - uses: percebus/github-actions-python/.github/actions/setup@main
         with:
           python-version: ${{ matrix.python-version }}
 
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+      - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
       - uses: ./.github/actions/poetry_self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
@@ -56,8 +56,8 @@ jobs:
     name: poetry @ ${{ matrix.poetry-version }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
         with:
           requirements-file: assets/examples/poetry/${{ matrix.poetry-version }}/requirements.pipx.txt
@@ -81,8 +81,8 @@ jobs:
     name: "plugins: ${{ matrix.example }}"
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
       - uses: ./.github/actions/poetry_self_add_plugins
         with:
