@@ -9,7 +9,7 @@ inputs:
 runs:
   using: composite
   steps:
-    # TODO? move to poetry_self_add_plugins ?
+    # TODO? move to self_add_plugins ?
     - name: poetry config virtualenvs.create
       shell: bash
       run: poetry config virtualenvs.create ${{ inputs.virtualenvs-create }}
