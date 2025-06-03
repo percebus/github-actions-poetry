@@ -1,4 +1,4 @@
-name: Test actions/poetry_self_add_plugins
+name: Test actions/self_add_plugins
 
 on:
   push:
@@ -10,10 +10,10 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-python/.github/actions/setup@main
-      - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
+      - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
-      - uses: ./.github/actions/poetry_self_add_plugins
-      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+      - uses: ./.github/actions/self_add_plugins
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
   python__matrix:
     needs: default
@@ -36,10 +36,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
+      - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
-      - uses: ./.github/actions/poetry_self_add_plugins
-      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+      - uses: ./.github/actions/self_add_plugins
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
   poetry__matrix:
     needs: default
@@ -57,13 +57,13 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-python/.github/actions/setup@main
-      - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
+      - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
         with:
           requirements-file: assets/examples/poetry/${{ matrix.poetry-version }}/requirements.pipx.txt
 
-      - uses: ./.github/actions/poetry_self_add_plugins
-      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+      - uses: ./.github/actions/self_add_plugins
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
   requirements__matrix:
     needs: default
@@ -82,10 +82,10 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-python/.github/actions/setup@main
-      - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
+      - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
-      - uses: ./.github/actions/poetry_self_add_plugins
+      - uses: ./.github/actions/self_add_plugins
         with:
           requirements-file: assets/examples/plugins/${{ matrix.example }}/requirements.poetry-plugin.txt
 
-      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
