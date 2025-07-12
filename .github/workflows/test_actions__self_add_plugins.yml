@@ -11,7 +11,7 @@ jobs:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: percebus/github-actions-pipx/.github/actions/install@main
       - uses: ./.github/actions/self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
@@ -37,7 +37,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: percebus/github-actions-pipx/.github/actions/install@main
       - uses: ./.github/actions/self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
@@ -58,7 +58,7 @@ jobs:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: percebus/github-actions-pipx/.github/actions/install@main
         with:
           requirements-file: assets/examples/poetry/${{ matrix.poetry-version }}/requirements.pipx.txt
 
@@ -83,7 +83,7 @@ jobs:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: percebus/github-actions-pipx/.github/actions/install@main
       - uses: ./.github/actions/self_add_plugins
         with:
           requirements-file: assets/examples/plugins/${{ matrix.example }}/requirements.poetry-plugin.txt

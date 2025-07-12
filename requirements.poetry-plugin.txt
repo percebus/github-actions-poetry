@@ -1,1 +1,2 @@
 poetry-plugin-sort
+poetry-plugin-shell
