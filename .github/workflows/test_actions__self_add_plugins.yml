@@ -4,6 +4,10 @@ on:
   push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   default:
     runs-on: ubuntu-latest
@@ -11,7 +15,7 @@ jobs:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: percebus/github-actions-pipx/.github/actions/install@main
       - uses: ./.github/actions/self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
@@ -37,7 +41,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: percebus/github-actions-pipx/.github/actions/install@main
       - uses: ./.github/actions/self_add_plugins
       - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
@@ -58,11 +62,14 @@ jobs:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: percebus/github-actions-pipx/.github/actions/install@main
         with:
           requirements-file: assets/examples/poetry/${{ matrix.poetry-version }}/requirements.pipx.txt
 
       - uses: ./.github/actions/self_add_plugins
+        with:
+          requirements-file: assets/examples/poetry/${{ matrix.poetry-version }}/requirements.poetry-plugin.txt
+
       - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
   requirements__matrix:
@@ -74,16 +81,17 @@ jobs:
       max-parallel: 6
       matrix:
         example:
-          - pip_compatible
-          - poetry-plugin-sort
           - poetry-plugin-export
+          - poetry-plugin-shell
+          - poetry-plugin-sort
+          - pip_compatible
 
     name: "plugins: ${{ matrix.example }}"
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: percebus/github-actions-pipx/.github/actions/install@main
       - uses: ./.github/actions/self_add_plugins
         with:
           requirements-file: assets/examples/plugins/${{ matrix.example }}/requirements.poetry-plugin.txt

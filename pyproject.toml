@@ -3,7 +3,7 @@ name = "github-actions-poetry"
 version = "1.0.0"
 description = "GitHub re-usable actions & workflows for poetry"
 authors = [
-    {name = "JCystems",email = "some.email@somewhere.com"}
+    {name = "JCystems", email = "some.email@somewhere.com"}
 ]
 license = {text = "SEE LICENSE IN LICENSE.md"}
 readme = "README.md"
