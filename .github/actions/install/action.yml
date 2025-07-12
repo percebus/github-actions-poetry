@@ -1,5 +1,6 @@
 name: poetry install
 description: poetry install
+
 inputs:
   virtualenvs-create:
     description: Create (or not) virtualenvs
@@ -9,11 +10,9 @@ inputs:
 runs:
   using: composite
   steps:
-    # XXX DELETE ME
-    # TODO move to self_add_plugins
-    - name: poetry config virtualenvs.create
-      shell: bash
-      run: poetry config virtualenvs.create ${{ inputs.virtualenvs-create }}
+    - uses: percebus/github-actions-poetry/.github/actions/config_virtualenvs_create@main
+      with:
+        virtualenvs-create: ${{ inputs.virtualenvs-create }}
 
     - name: poetry install
       shell: bash

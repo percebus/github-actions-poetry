@@ -6,19 +6,9 @@ inputs:
     required: false
     default: ./requirements.poetry-plugin.txt
 
-  virtualenvs-create:
-    description: Create (or not) virtualenvs
-    required: false
-    default: "false"
-
 runs:
   using: composite
   steps:
-    # TODO
-    # - uses: percebus/github-actions-poetry/.github/actions/config_virtualenvs_create@main
-    #   with:
-    #     virtualenvs-create: ${{ inputs.virtualenvs-create }}
-
     - name: cat ${{ inputs.requirements-file }}
       shell: bash
       run: cat ${{ inputs.requirements-file }}
