@@ -1,5 +1,5 @@
-name: poetry install
-description: poetry install
+name: poetry config virtualenvs.create
+description: poetry config virtualenvs.create
 inputs:
   virtualenvs-create:
     description: Create (or not) virtualenvs

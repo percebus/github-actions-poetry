@@ -81,9 +81,10 @@ jobs:
       max-parallel: 6
       matrix:
         example:
-          - pip_compatible
-          - poetry-plugin-sort
           - poetry-plugin-export
+          - poetry-plugin-shell
+          - poetry-plugin-sort
+          - pip_compatible
 
     name: "plugins: ${{ matrix.example }}"
     steps:
