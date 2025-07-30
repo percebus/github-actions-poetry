@@ -13,9 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # .python-version
       - uses: percebus/github-actions-python/.github/actions/setup@main
+
+      # upgrade pip & pipx
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
+
+      # Install poetry via pipx
       - uses: percebus/github-actions-pipx/.github/actions/install@main
+
+      # Extend poetry w/ plugins
       - uses: ./.github/actions/self_add_plugins
+
+      # Install dependencies
       - uses: ./.github/actions/install
+
+      # Freeze pip dependencies
       - uses: percebus/github-actions-pip/.github/actions/freeze@main
