@@ -21,6 +21,4 @@ jobs:
     uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
 
   pip-audit:
-    uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit.yml@main
-    with:
-      audit-requirements-file: pyproject.toml
+    uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit_path.yml@main
